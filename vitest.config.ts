@@ -3,8 +3,8 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
 export default defineConfig({
-  // ADD THIS LINE BELOW (Replace 'your-repo-name' with your actual GitHub repo name)
-  base: '/your-repo-name/', 
+  // This line ensures assets load correctly from your GitHub repository folder
+  base: '/property-showcase-pro/', 
   plugins: [react()],
   test: {
     environment: "jsdom",

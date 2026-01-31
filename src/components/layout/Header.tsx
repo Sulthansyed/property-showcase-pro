@@ -4,18 +4,30 @@ import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navigation = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Units", href: "/units" },
-  { name: "Amenities", href: "/amenities" },
-  { name: "Location", href: "/location" },
-  { name: "Gallery", href: "/gallery" },
-  { name: "Contact", href: "/contact" },
+  { name: "Home", href: "/", anchor: null },
+  { name: "About", href: "/about", anchor: "#about" },
+  { name: "Units", href: "/units", anchor: "#units" },
+  { name: "Amenities", href: "/amenities", anchor: "#amenities" },
+  { name: "Location", href: "/location", anchor: "#location" },
+  { name: "Gallery", href: "/gallery", anchor: "#gallery" },
+  { name: "Contact", href: "/contact", anchor: "#contact" },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
+  const handleNavClick = (item: typeof navigation[0], e: React.MouseEvent) => {
+    if (isHomePage && item.anchor) {
+      e.preventDefault();
+      const element = document.querySelector(item.anchor);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+      setMobileMenuOpen(false);
+    }
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md shadow-soft">
@@ -33,7 +45,8 @@ export function Header() {
           {navigation.map((item) => (
             <Link
               key={item.name}
-              to={item.href}
+              to={isHomePage && item.anchor ? "/" : item.href}
+              onClick={(e) => handleNavClick(item, e)}
               className={`text-sm font-medium transition-colors duration-200 hover:text-primary ${
                 location.pathname === item.href
                   ? "text-primary"
@@ -77,13 +90,13 @@ export function Header() {
             {navigation.map((item) => (
               <Link
                 key={item.name}
-                to={item.href}
+                to={isHomePage && item.anchor ? "/" : item.href}
+                onClick={(e) => handleNavClick(item, e)}
                 className={`block py-2 text-base font-medium transition-colors ${
                   location.pathname === item.href
                     ? "text-primary"
                     : "text-muted-foreground"
                 }`}
-                onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
               </Link>

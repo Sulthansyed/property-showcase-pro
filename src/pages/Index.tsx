@@ -2,6 +2,12 @@ import { Link } from "react-router-dom";
 import { ArrowRight, MapPin, Building2, Shield, Ruler, Train } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout/Layout";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { UnitsSection } from "@/components/sections/UnitsSection";
+import { AmenitiesSection } from "@/components/sections/AmenitiesSection";
+import { LocationSection } from "@/components/sections/LocationSection";
+import { GallerySection } from "@/components/sections/GallerySection";
+import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function Index() {
   return (
@@ -38,7 +44,7 @@ export default function Index() {
                 </Link>
               </Button>
               <Button variant="heroOutline" size="xl" asChild>
-                <Link to="/units">View Units</Link>
+                <a href="#units">View Units</a>
               </Button>
             </div>
           </div>
@@ -121,6 +127,15 @@ export default function Index() {
         </div>
       </section>
 
+      {/* About Section */}
+      <AboutSection />
+
+      {/* Units Section */}
+      <UnitsSection />
+
+      {/* Amenities Section */}
+      <AmenitiesSection />
+
       {/* Key Highlights */}
       <section className="py-20">
         <div className="container mx-auto px-4">
@@ -154,10 +169,10 @@ export default function Index() {
               </div>
 
               <Button variant="teal" size="lg" asChild>
-                <Link to="/location">
+                <a href="#location">
                   Explore Location
                   <ArrowRight className="h-4 w-4" />
-                </Link>
+                </a>
               </Button>
             </div>
 
@@ -181,55 +196,11 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Facilities Preview */}
-      <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <p className="text-secondary font-medium tracking-widest uppercase mb-4">
-              World-Class Amenities
-            </p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">
-              Exclusive Facilities at Podium Level 9
-            </h2>
-            <p className="opacity-80 leading-relaxed">
-              Experience a new standard of living with over 50 exclusive facilities designed 
-              for your wellness, recreation, and entertainment.
-            </p>
-          </div>
+      {/* Location Section */}
+      <LocationSection />
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {[
-              { src: "/images/pool.jpg", alt: "50m Lap Pool" },
-              { src: "/images/gym.jpg", alt: "Smart Gym" },
-              { src: "/images/playground.jpg", alt: "Kids Playground" },
-              { src: "/images/court.jpg", alt: "Multipurpose Court" },
-            ].map((image, index) => (
-              <div
-                key={index}
-                className="relative aspect-square rounded-lg overflow-hidden group"
-              >
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                  <p className="text-primary-foreground font-medium">{image.alt}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button variant="gold" size="lg" asChild>
-              <Link to="/amenities">
-                View All Facilities
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* Gallery Section */}
+      <GallerySection />
 
       {/* The Shah Alam - Retail */}
       <section className="py-20">
@@ -286,6 +257,9 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Contact Section */}
+      <ContactSection />
+
       {/* CTA Section */}
       <section className="py-20 bg-muted">
         <div className="container mx-auto px-4">
@@ -307,7 +281,7 @@ export default function Index() {
                     </Link>
                   </Button>
                   <Button variant="outline" size="lg" asChild>
-                    <Link to="/units">View Unit Types</Link>
+                    <a href="#units">View Unit Types</a>
                   </Button>
                 </div>
               </div>
